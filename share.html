@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Screen Share</title>
+</head>
+<body>
+    <button onclick="share()">Share Screen</button>
+    <video id="v" autoplay style="width:100%"></video>
+    <script>
+    async function share() {
+        try {
+            const s = await navigator.mediaDevices.getDisplayMedia({video:true});
+            document.getElementById('v').srcObject = s;
+        } catch(e) {
+            alert('Failed: ' + e.message);
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Prompt</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Real Time Prompt</h1>
+            <div class="controls">
+                <select id="roomSelect">
+                    <option value="general">🏠 General</option>
+                    <option value="tech">💻 Tech</option>
+                    <option value="random">🎲 Random</option>
+                    <option value="help">❓ Help</option>
+                </select>
+                <select id="statusSelect">
+                    <option value="online">🟢 Online</option>
+                    <option value="away">🟡 Away</option>
+                    <option value="busy">🔴 Busy</option>
+                </select>
+                <button id="themeBtn">🎨 Theme</button>
+            </div>
+            <div class="stats">
+                <span id="userCount">👥 0 users</span>
+                <span id="messageCount">💬 0 messages</span>
+                <span id="roomName">🏠 General</span>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <h3>Online Users</h3>
+            <div id="userList"></div>
+            <div class="features">
+                <button id="emojiBtn">😀 Emojis</button>
+                <button id="soundBtn">🔊 Sound</button>
+                <button id="exportBtn">💾 Export</button>
+                <button id="screenShareBtn" onclick="openScreenModal()">📺 Share</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="chat-container">
+                <div id="messages"></div>
+                <div id="typing"></div>
+            </div>
+            
+            <div class="input-container">
+                <select id="avatarSelect">
+                    <option value="👤">👤</option>
+                    <option value="👨">👨</option>
+                    <option value="👩">👩</option>
+                    <option value="👶">👶</option>
+                    <option value="👵">👵</option>
+                    <option value="👴">👴</option>
+                    <option value="👱">👱</option>
+                    <option value="👳">👳</option>
+                </select>
+                <select id="roleSelect">
+                    <option value="user">👤 User</option>
+                    <option value="developer">💻 Developer</option>
+                    <option value="admin">👑 Admin</option>
+                    <option value="moderator">🛡️ Moderator</option>
+                    <option value="guest">👋 Guest</option>
+                </select>
+                <input type="text" id="userInput" placeholder="Enter your name" maxlength="20" />
+                <div id="userSearchPanel" class="user-search-panel">
+                    <input type="text" id="userSearchInput" placeholder="Search users..." />
+                    <div id="userSearchResults"></div>
+                </div>
+                <input type="text" id="promptInput" placeholder="Type your message..." maxlength="500" />
+                <label><input type="checkbox" id="privateMsg"> Private</label>
+                <select id="targetUser" style="display:none;">
+                    <option value="">Select user...</option>
+                </select>
+                <button id="mentionBtn" title="Mention user">@</button>
+                <button id="replyBtn" title="Reply to message">↩️</button>
+                <button id="shareScreenBtn" title="Share screen" onclick="openScreenModal()">📺</button>
+                <button id="sendBtn">📤 Send</button>
+                <button id="clearBtn">🗑️ Clear</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="emojiPanel" class="emoji-panel">
+        <div class="emoji-grid">
+            <span class="emoji" data-emoji="😀">😀</span>
+            <span class="emoji" data-emoji="😂">😂</span>
+            <span class="emoji" data-emoji="😍">😍</span>
+            <span class="emoji" data-emoji="😎">😎</span>
+            <span class="emoji" data-emoji="😢">😢</span>
+            <span class="emoji" data-emoji="😱">😱</span>
+            <span class="emoji" data-emoji="👍">👍</span>
+            <span class="emoji" data-emoji="👎">👎</span>
+            <span class="emoji" data-emoji="❤️">❤️</span>
+            <span class="emoji" data-emoji="🔥">🔥</span>
+            <span class="emoji" data-emoji="💩">💩</span>
+            <span class="emoji" data-emoji="🎉">🎉</span>
+        </div>
+    </div>
+    
+    <div id="screenShareModal" class="screen-share-modal">
+        <div class="modal-content">
+            <h3>Screen Sharing</h3>
+            <div id="screenContainer"></div>
+            <div class="modal-controls">
+                <button id="startShareBtn" onclick="startScreenShare()">Start Sharing</button>
+                <button id="stopShareBtn" onclick="stopScreenShare()">Stop Sharing</button>
+                <button id="closeModalBtn" onclick="closeScreenModal()">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

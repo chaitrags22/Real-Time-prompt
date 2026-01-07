@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Screen Share Fix</title>
+</head>
+<body>
+    <button onclick="startShare()">📺 Share Screen</button>
+    <div id="videoContainer"></div>
+    
+    <script>
+    async function startShare() {
+        try {
+            const stream = await navigator.mediaDevices.getDisplayMedia({video: true});
+            const video = document.createElement('video');
+            video.srcObject = stream;
+            video.autoplay = true;
+            video.style.width = '100%';
+            video.style.maxWidth = '800px';
+            document.getElementById('videoContainer').innerHTML = '';
+            document.getElementById('videoContainer').appendChild(video);
+        } catch(e) {
+            alert('Screen share failed: ' + e.message);
+        }
+    }
+    </script>
+</body>
+</html>

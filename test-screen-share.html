@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Screen Share Test</title>
+</head>
+<body>
+    <button onclick="testScreenShare()">Test Screen Share</button>
+    <video id="video" autoplay style="width:100%;max-width:800px;"></video>
+    
+    <script>
+    async function testScreenShare() {
+        try {
+            const stream = await navigator.mediaDevices.getDisplayMedia({
+                video: true,
+                audio: true
+            });
+            document.getElementById('video').srcObject = stream;
+            console.log('Screen sharing started successfully');
+        } catch (err) {
+            console.error('Screen sharing failed:', err);
+            alert('Screen sharing failed: ' + err.message);
+        }
+    }
+    </script>
+</body>
+</html>
